@@ -10,6 +10,12 @@ import UIKit
 
 class WeatherDetailViewController: UIViewController {
 
+    var city: City? {
+        didSet {
+            self.navigationItem.title = city?.name
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -13,6 +13,9 @@
 		ED4A96DD21E8C399003B93CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4A96DB21E8C399003B93CC /* LaunchScreen.storyboard */; };
 		ED4A96E521E8CED3003B93CC /* CitiesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96E421E8CED3003B93CC /* CitiesListViewController.swift */; };
 		ED4A96E721E8CF54003B93CC /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96E621E8CF54003B93CC /* WeatherDetailViewController.swift */; };
+		ED4A96E921E8E955003B93CC /* CitiesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96E821E8E955003B93CC /* CitiesDataSource.swift */; };
+		ED4A96EB21E8EDDF003B93CC /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96EA21E8EDDF003B93CC /* City.swift */; };
+		ED4A96ED21E9E91F003B93CC /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96EC21E9E91F003B93CC /* WeatherInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		ED4A96DE21E8C399003B93CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED4A96E421E8CED3003B93CC /* CitiesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewController.swift; sourceTree = "<group>"; };
 		ED4A96E621E8CF54003B93CC /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
+		ED4A96E821E8E955003B93CC /* CitiesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesDataSource.swift; sourceTree = "<group>"; };
+		ED4A96EA21E8EDDF003B93CC /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		ED4A96EC21E9E91F003B93CC /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,26 @@
 		ED4A96D121E8C398003B93CC /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				ED4A96D221E8C398003B93CC /* AppDelegate.swift */,
 				ED4A96D621E8C398003B93CC /* Main.storyboard */,
 				ED4A96E421E8CED3003B93CC /* CitiesListViewController.swift */,
 				ED4A96E621E8CF54003B93CC /* WeatherDetailViewController.swift */,
+				ED4A96E821E8E955003B93CC /* CitiesDataSource.swift */,
+				ED4A96EA21E8EDDF003B93CC /* City.swift */,
+				ED4A96EC21E9E91F003B93CC /* WeatherInfo.swift */,
+				ED4A96EE21E9EA74003B93CC /* Supporting Files */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		ED4A96EE21E9EA74003B93CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED4A96D221E8C398003B93CC /* AppDelegate.swift */,
 				ED4A96D921E8C399003B93CC /* Assets.xcassets */,
 				ED4A96DB21E8C399003B93CC /* LaunchScreen.storyboard */,
 				ED4A96DE21E8C399003B93CC /* Info.plist */,
 			);
-			path = Weather;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +156,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4A96D321E8C398003B93CC /* AppDelegate.swift in Sources */,
+				ED4A96EB21E8EDDF003B93CC /* City.swift in Sources */,
+				ED4A96ED21E9E91F003B93CC /* WeatherInfo.swift in Sources */,
+				ED4A96E921E8E955003B93CC /* CitiesDataSource.swift in Sources */,
 				ED4A96E721E8CF54003B93CC /* WeatherDetailViewController.swift in Sources */,
 				ED4A96E521E8CED3003B93CC /* CitiesListViewController.swift in Sources */,
 			);
@@ -288,7 +308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QBVG4UVN9M;
-				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Weather/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -307,7 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QBVG4UVN9M;
-				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Weather/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

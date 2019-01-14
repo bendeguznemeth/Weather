@@ -10,21 +10,35 @@ import UIKit
 
 class CitiesListViewController: UIViewController {
 
+    @IBOutlet var citiesListTableView: UITableView!
+    
+    private let citiesDataSource = CitiesDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.citiesListTableView.dataSource = self.citiesDataSource
     }
     
-
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "showWeatherInfo":
+            guard let selectedIndexPath = self.citiesListTableView.indexPathForSelectedRow else {
+                fatalError("showWeatherInfo segue triggered without a selected row in citiesListTableView")
+            }
+            
+            let city = self.citiesDataSource.cities[selectedIndexPath.row]
 
+            guard let destinationVC = segue.destination as? WeatherDetailViewController else {
+                fatalError("Can not create destinationVC as WeatherDetailViewController")
+            }
+            
+            destinationVC.city = city
+        default:
+            fatalError("Unexpected Segue Identifier: \(String(describing: segue.identifier))")
+        }
+    }
 }
