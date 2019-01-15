@@ -29,6 +29,10 @@ class WeatherDetailViewController: UIViewController {
         
         self.displayWeatherInfo()
         
+        self.getWeatherInfo()
+    }
+    
+    private func getWeatherInfo() {
         guard let cityID = city?.id else {
             fatalError("WeatherDetailViewController do not have a city")
         }
@@ -83,13 +87,15 @@ class WeatherDetailViewController: UIViewController {
     private func showAlertController(with message: String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         
+        let retryAction = UIAlertAction(title: "Retry", style: .default) { (_) in
+            self.getWeatherInfo()
+        }
+        alertController.addAction(retryAction)
+        
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
             self.activityIndicator.stopAnimating()
         })
-        
         alertController.addAction(okAction)
-        
-        //TODO: - Retry
         
         self.present(alertController, animated: true, completion: nil)
     }
