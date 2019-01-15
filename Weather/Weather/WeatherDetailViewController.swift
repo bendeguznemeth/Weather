@@ -28,14 +28,26 @@ class WeatherDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.displayWeatherInfo()
-
+        
         guard let cityID = city?.id else {
             fatalError("WeatherDetailViewController do not have a city")
         }
         
-        OpenWeatherAPI.getWeatherInfo(for: cityID) { (weatherInfo) in
-            self.city?.weatherInfo = weatherInfo
-            self.displayWeatherInfo()
+        OpenWeatherAPI.getWeatherInfo(for: cityID) { (result) in
+            switch result {
+            case let .success(weatherInfo):
+                self.city?.weatherInfo = weatherInfo
+                
+                DispatchQueue.main.sync {
+                    self.displayWeatherInfo()
+                }
+            case let .failure(error):
+                let errorString = self.makeErrorString(from: error)
+                
+                DispatchQueue.main.sync {
+                    self.showAlertController(with: errorString)
+                }
+            }
         }
     }
     
@@ -49,5 +61,36 @@ class WeatherDetailViewController: UIViewController {
             
             self.activityIndicator.stopAnimating()
         }
+    }
+    
+    private func makeErrorString(from error: Error) -> String {
+        let errorString: String
+        
+        switch error {
+        case let OpenWeatherError.noDataError(noDataErrorString):
+            errorString = noDataErrorString
+        case let OpenWeatherError.parsingError(parsingErrorString):
+            errorString = parsingErrorString
+        case let OpenWeatherError.noMessageError(noMessageError):
+            errorString = noMessageError
+        default:
+            errorString = error.localizedDescription
+        }
+        
+        return errorString
+    }
+    
+    private func showAlertController(with message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            self.activityIndicator.stopAnimating()
+        })
+        
+        alertController.addAction(okAction)
+        
+        //TODO: - Retry
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }

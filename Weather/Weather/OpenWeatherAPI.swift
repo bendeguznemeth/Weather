@@ -8,22 +8,34 @@
 
 import Foundation
 
+enum APIResult<Value> {
+    case success(Value)
+    case failure(Error)
+}
+
+enum OpenWeatherError: Error {
+    case noDataError(String)
+    case parsingError(String)
+    case noMessageError(String)
+}
+
 struct OpenWeatherAPI {
     
     private static let baseURLString = "https://api.openweathermap.org/data/2.5/weather"
     private static let apiKey = "6201d38af6afd8d07c7e1e0355153689"
     
-    static func getWeatherInfo(for cityID: String, completion: @escaping (WeatherInfo) -> Void) {
+    static func getWeatherInfo(for cityID: String, completion: @escaping (APIResult<WeatherInfo>) -> Void) {
         let url = createURL(for: cityID)
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard error == nil else {
-                print("Error: \(String(describing: error))")
+            if let error = error {
+                completion(.failure(error))
                 return
             }
             
             guard let content = data else {
-                print("We have not got any data back")
+                let noDataError = OpenWeatherError.noDataError("We have not got any data back")
+                completion(.failure(noDataError))
                 return
             }
             
@@ -39,18 +51,25 @@ struct OpenWeatherAPI {
                     let temperature = mainDetails["temp"] as? Double,
                     let pressure = mainDetails["pressure"] as? Double,
                     let humidity = mainDetails["humidity"] as? Double else {
-                        print("JSON parsing failed")
+                        guard
+                            let jsonDictionary = jsonObject as? [AnyHashable:Any],
+                            let message = jsonDictionary["message"] as? String else {
+                                let noMessageError = OpenWeatherError.noMessageError("No message arrived")
+                                completion(.failure(noMessageError))
+                                return
+                        }
+                        let parsingError = OpenWeatherError.parsingError(message)
+                        completion(.failure(parsingError))
                         return
                 }
                 
                 let weatherInfo = WeatherInfo(main: mainWeather, description: weatherDescription, temperature: temperature, pressure: pressure, humidity: humidity)
                 
-                DispatchQueue.main.sync {
-                    completion(weatherInfo)
-                }
+                completion(.success(weatherInfo))
                 
-            } catch {
-                print("Could not create jsonObject")
+            } catch let error {
+                completion(.failure(error))
+                return
             }
         }
         
