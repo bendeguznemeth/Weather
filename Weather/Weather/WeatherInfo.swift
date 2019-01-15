@@ -8,20 +8,12 @@
 
 import Foundation
 
-class WeatherInfo {
+struct WeatherInfo {
     
-    var main: String
-    var description: String
-    var temperature: Double
-    var pressure: Double
-    var humidity: Double
+    let main: String
+    let description: String
+    let temperature: Double
+    let pressure: Double
+    let humidity: Double
     
-    
-    init(main: String, description: String, temperature: Double, pressure: Double, humidity: Double) {
-        self.main = main
-        self.description = description
-        self.temperature = temperature
-        self.pressure = pressure
-        self.humidity = humidity
-    }
 }

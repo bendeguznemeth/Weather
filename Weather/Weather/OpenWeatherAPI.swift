@@ -29,7 +29,7 @@ struct OpenWeatherAPI {
             
             do {
                 let jsonObject = try JSONSerialization.jsonObject(with: content, options: [])
-                                
+                
                 guard
                     let jsonDictionary = jsonObject as? [AnyHashable:Any],
                     let weather = jsonDictionary["weather"] as? [[String:Any]],
@@ -44,7 +44,10 @@ struct OpenWeatherAPI {
                 }
                 
                 let weatherInfo = WeatherInfo(main: mainWeather, description: weatherDescription, temperature: temperature, pressure: pressure, humidity: humidity)
-                completion(weatherInfo)
+                
+                DispatchQueue.main.sync {
+                    completion(weatherInfo)
+                }
                 
             } catch {
                 print("Could not create jsonObject")

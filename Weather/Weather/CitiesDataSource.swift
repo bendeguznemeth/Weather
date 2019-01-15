@@ -10,7 +10,7 @@ import UIKit
 
 class CitiesDataSource: NSObject, UITableViewDataSource {
     
-    var cities = [City(id: "Sopron",name: "Sopron", county: "Győr-Moson-Sopron County"),
+    let cities = [City(id: "Sopron",name: "Sopron", county: "Győr-Moson-Sopron County"),
                   City(id: "Gyor",name: "Győr", county: "Győr-Moson-Sopron County"),
                   City(id: "Budapest",name: "Budapest", county: nil),
                   City(id: "Debrecen",name: "Debrecen", county: "Hajdú-Bihar County"),
