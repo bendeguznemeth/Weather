@@ -10,11 +10,13 @@ import Foundation
 
 class City {
     
+    let id: String
     let name: String
     let county: String?
     var weatherInfo: WeatherInfo?
     
-    init(name: String, county: String?) {
+    init(id: String, name: String, county: String?) {
+        self.id = id
         self.name = name
         self.county = county
     }

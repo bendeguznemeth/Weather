@@ -10,12 +10,12 @@ import UIKit
 
 class CitiesDataSource: NSObject, UITableViewDataSource {
     
-    var cities = [City(name: "Sopron", county: "Győr-Moson-Sopron County"),
-                  City(name: "Győr", county: "Győr-Moson-Sopron County"),
-                  City(name: "Budapest", county: nil),
-                  City(name: "Debrecen", county: "Hajdú-Bihar County"),
-                  City(name: "Szeged", county: "Csongrád County"),
-                  City(name: "Morgul", county: "Mordor")]
+    var cities = [City(id: "Sopron",name: "Sopron", county: "Győr-Moson-Sopron County"),
+                  City(id: "Gyor",name: "Győr", county: "Győr-Moson-Sopron County"),
+                  City(id: "Budapest",name: "Budapest", county: nil),
+                  City(id: "Debrecen",name: "Debrecen", county: "Hajdú-Bihar County"),
+                  City(id: "Szeged",name: "Szeged", county: "Csongrád County"),
+                  City(id: "Morgul",name: "Morgul", county: "Mordor")]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cities.count

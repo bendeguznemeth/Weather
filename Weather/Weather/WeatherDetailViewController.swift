@@ -19,18 +19,20 @@ class WeatherDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        guard let cityID = city?.id else {
+            fatalError("WeatherDetailViewController do not have a city")
+        }
+        
+        OpenWeatherAPI.getWeatherInfo(for: cityID) { (weatherInfo) in
+            
+            print("Result:")
+            print("\(weatherInfo.main)")
+            print("\(weatherInfo.description)")
+            print("\(weatherInfo.temperature)")
+            print("\(weatherInfo.pressure)")
+            print("\(weatherInfo.humidity)")
+            
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

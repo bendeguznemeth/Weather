@@ -16,6 +16,7 @@
 		ED4A96E921E8E955003B93CC /* CitiesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96E821E8E955003B93CC /* CitiesDataSource.swift */; };
 		ED4A96EB21E8EDDF003B93CC /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96EA21E8EDDF003B93CC /* City.swift */; };
 		ED4A96ED21E9E91F003B93CC /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96EC21E9E91F003B93CC /* WeatherInfo.swift */; };
+		ED4A96F021ECC11A003B93CC /* OpenWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A96EF21ECC11A003B93CC /* OpenWeatherAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		ED4A96E821E8E955003B93CC /* CitiesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesDataSource.swift; sourceTree = "<group>"; };
 		ED4A96EA21E8EDDF003B93CC /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		ED4A96EC21E9E91F003B93CC /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
+		ED4A96EF21ECC11A003B93CC /* OpenWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				ED4A96D621E8C398003B93CC /* Main.storyboard */,
 				ED4A96E421E8CED3003B93CC /* CitiesListViewController.swift */,
 				ED4A96E621E8CF54003B93CC /* WeatherDetailViewController.swift */,
+				ED4A96EF21ECC11A003B93CC /* OpenWeatherAPI.swift */,
 				ED4A96E821E8E955003B93CC /* CitiesDataSource.swift */,
 				ED4A96EA21E8EDDF003B93CC /* City.swift */,
 				ED4A96EC21E9E91F003B93CC /* WeatherInfo.swift */,
@@ -157,6 +160,7 @@
 			files = (
 				ED4A96D321E8C398003B93CC /* AppDelegate.swift in Sources */,
 				ED4A96EB21E8EDDF003B93CC /* City.swift in Sources */,
+				ED4A96F021ECC11A003B93CC /* OpenWeatherAPI.swift in Sources */,
 				ED4A96ED21E9E91F003B93CC /* WeatherInfo.swift in Sources */,
 				ED4A96E921E8E955003B93CC /* CitiesDataSource.swift in Sources */,
 				ED4A96E721E8CF54003B93CC /* WeatherDetailViewController.swift in Sources */,

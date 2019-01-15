@@ -12,12 +12,12 @@ class WeatherInfo {
     
     var main: String
     var description: String
-    var temperature: Int
-    var pressure: Int
-    var humidity: Int
+    var temperature: Double
+    var pressure: Double
+    var humidity: Double
     
     
-    init(main: String, description: String, temperature: Int, pressure: Int, humidity: Int) {
+    init(main: String, description: String, temperature: Double, pressure: Double, humidity: Double) {
         self.main = main
         self.description = description
         self.temperature = temperature
