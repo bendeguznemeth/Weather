@@ -27,8 +27,6 @@ class WeatherDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.displayWeatherInfo()
-        
         self.getWeatherInfo()
     }
     
@@ -40,10 +38,8 @@ class WeatherDetailViewController: UIViewController {
         OpenWeatherAPI.getWeatherInfo(for: cityID) { (result) in
             switch result {
             case let .success(weatherInfo):
-                self.city?.weatherInfo = weatherInfo
-                
                 DispatchQueue.main.sync {
-                    self.displayWeatherInfo()
+                    self.display(weatherInfo: weatherInfo)
                 }
             case let .failure(error):
                 let errorString = self.makeErrorString(from: error)
@@ -55,16 +51,14 @@ class WeatherDetailViewController: UIViewController {
         }
     }
     
-    private func displayWeatherInfo() {
-        if let weatherInfo = self.city?.weatherInfo {
-            self.mainLabel.text = weatherInfo.main
-            self.descriptionLabel.text = weatherInfo.description
-            self.temperatureLabel.text = "\(Int(weatherInfo.temperature)) °C"
-            self.pressureLabel.text = "\(Int(weatherInfo.pressure)) hpa"
-            self.humidityLabel.text = "\(Int(weatherInfo.humidity)) %"
-            
-            self.activityIndicator.stopAnimating()
-        }
+    private func display(weatherInfo: WeatherInfo) {
+        self.mainLabel.text = weatherInfo.main
+        self.descriptionLabel.text = weatherInfo.description
+        self.temperatureLabel.text = "\(Int(weatherInfo.temperature)) °C"
+        self.pressureLabel.text = "\(Int(weatherInfo.pressure)) hpa"
+        self.humidityLabel.text = "\(Int(weatherInfo.humidity)) %"
+        
+        self.activityIndicator.stopAnimating()
     }
     
     private func makeErrorString(from error: Error) -> String {

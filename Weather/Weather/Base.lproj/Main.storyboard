@@ -45,9 +45,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="HsJ-kA-Eu4" kind="show" identifier="showWeatherInfo" id="Fph-5w-YVM"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -73,13 +70,13 @@
         <!--Weather Detail View Controller-->
         <scene sceneID="By3-Ec-A1D">
             <objects>
-                <viewController id="HsJ-kA-Eu4" customClass="WeatherDetailViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeatherDetailViewController" id="HsJ-kA-Eu4" customClass="WeatherDetailViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="91a-aF-8To">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pV5-MQ-CKu">
-                                <rect key="frame" x="0.0" y="72" width="375" height="186"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="186"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="ec5-hZ-xO0">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="31.5"/>

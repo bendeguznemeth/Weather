@@ -8,37 +8,61 @@
 
 import UIKit
 
-class CitiesListViewController: UIViewController {
+class CitiesListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var citiesListTableView: UITableView!
-    
-    private let citiesDataSource = CitiesDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.citiesListTableView.dataSource = self.citiesDataSource
+        self.citiesListTableView.delegate = self
+        self.citiesListTableView.dataSource = self
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
+    // TableView datasource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return CitiesDataSource.cities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch segue.identifier {
-        case "showWeatherInfo":
-            guard let selectedIndexPath = self.citiesListTableView.indexPathForSelectedRow else {
-                fatalError("showWeatherInfo segue triggered without a selected row in citiesListTableView")
-            }
-            
-            let city = self.citiesDataSource.cities[selectedIndexPath.row]
-
-            guard let destinationVC = segue.destination as? WeatherDetailViewController else {
-                fatalError("Can not create destinationVC as WeatherDetailViewController")
-            }
-            
-            destinationVC.city = city
-        default:
-            fatalError("Unexpected Segue Identifier: \(String(describing: segue.identifier))")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        
+        let city = CitiesDataSource.cities[indexPath.row]
+        
+        cell.textLabel?.text = city.name
+        
+        if let county = city.county {
+            cell.detailTextLabel?.text = county
+        } else {
+            cell.detailTextLabel?.text = city.name
         }
+        
+        return cell
+    }
+    
+    // TableView delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let city = CitiesDataSource.cities[indexPath.row]
+        
+        navigateToDetailVC(city: city)
+    }
+    
+    private func navigateToDetailVC(city: City) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let detailVC = sb.instantiateViewController(withIdentifier: "WeatherDetailViewController") as? WeatherDetailViewController else {
+            fatalError("Could not create WeatherDetailViewController")
+        }
+        
+        detailVC.city = city
+        
+        guard let navigationController = self.navigationController else {
+            fatalError("Could not create NavigationController")
+        }
+        
+        navigationController.pushViewController(detailVC, animated: true)
     }
 }

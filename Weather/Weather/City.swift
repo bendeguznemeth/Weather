@@ -8,16 +8,10 @@
 
 import Foundation
 
-class City {
+struct City {
     
     let id: String
     let name: String
     let county: String?
-    var weatherInfo: WeatherInfo?
     
-    init(id: String, name: String, county: String?) {
-        self.id = id
-        self.name = name
-        self.county = county
-    }
 }
