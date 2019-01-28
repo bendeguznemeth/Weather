@@ -15,7 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let citiesListViewController = storyboard.instantiateViewController(withIdentifier: "CitiesListViewController") as? CitiesListViewController else {
+            fatalError("CitiesListViewController cannot be instantiated")
+        }
+        
+        let startingNavController = UINavigationController.init(rootViewController: citiesListViewController)
+        
+        let citiesListInteractor = CitiesListInteractor()
+        let citiesListPresenter = CitiesListPresenter(view: citiesListViewController, interactor: citiesListInteractor)
+        citiesListInteractor.presenter = citiesListPresenter
+        citiesListViewController.presenter = citiesListPresenter
+        
+        self.window?.rootViewController = startingNavController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

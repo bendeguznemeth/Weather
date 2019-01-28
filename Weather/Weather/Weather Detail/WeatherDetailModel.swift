@@ -1,14 +1,12 @@
 //
-//  WeatherInfo.swift
+//  WeatherDetailModel.swift
 //  Weather
 //
-//  Created by Németh Bendegúz on 2019. 01. 12..
+//  Created by Németh Bendegúz on 2019. 01. 24..
 //  Copyright © 2019. Németh Bendegúz. All rights reserved.
 //
 
-import Foundation
-
-struct WeatherInfo {
+struct WeatherDetailModel {
     
     let main: String
     let description: String
