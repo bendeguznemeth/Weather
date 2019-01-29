@@ -7,7 +7,7 @@
 //
 
 struct WeatherDetailParams {
-    let cityID: String
+    let cityTag: String
 }
 
 extension UseCaseFactory {

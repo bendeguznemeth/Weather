@@ -36,7 +36,7 @@ class CitiesListPresenter: CitiesListPresenting {
                 countyString = citymodel.name
             }
             
-            return CitiesListViewContent.CitiesListCellViewContent.init(cityID: citymodel.cityID, name: citymodel.name, county: countyString)
+            return CitiesListViewContent.CitiesListCellViewContent.init(cityTag: citymodel.cityTag, name: citymodel.name, county: countyString)
         }
         
         return CitiesListViewContent(citiesListCellContents: citiesListCellContents)

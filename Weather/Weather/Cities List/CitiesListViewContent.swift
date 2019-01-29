@@ -11,7 +11,8 @@ struct CitiesListViewContent {
     let citiesListCellContents: [CitiesListCellViewContent]
     
     struct CitiesListCellViewContent {
-        let cityID: String
+        
+        let cityTag: String
         let name: String
         let county: String
     }

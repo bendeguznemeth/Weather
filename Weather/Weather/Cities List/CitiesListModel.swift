@@ -11,7 +11,7 @@ struct CitiesListModel {
     let cityModels: [CityModel]
     
     struct CityModel {
-        let cityID: String
+        let cityTag: String
         let name: String
         let county: String?
     }

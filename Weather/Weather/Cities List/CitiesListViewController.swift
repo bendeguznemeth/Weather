@@ -36,18 +36,18 @@ class CitiesListViewController: UIViewController, CitiesListViewProtocol {
     
     // MARK: - Navigation
     
-    private func navigateToDetailVC(cityString: String?, cityID: String?) {
+    private func navigateToDetailVC(cityString: String?, cityTag: String?) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         
         guard let detailVC = sb.instantiateViewController(withIdentifier: "WeatherDetailViewController") as? WeatherDetailViewController else {
             fatalError("Could not create WeatherDetailViewController")
         }
         
-        guard let cityID = cityID else {
-            fatalError("Did not get cityID")
+        guard let cityTag = cityTag else {
+            fatalError("Did not get cityTag")
         }
         
-        let weatherDetailInteractor = WeatherDetailInteractor(cityID: cityID)
+        let weatherDetailInteractor = WeatherDetailInteractor(cityTag: cityTag)
         let weatherDetailPresenter = WeatherDetailPresenter(view: detailVC, interactor: weatherDetailInteractor)
         
         weatherDetailInteractor.presenter = weatherDetailPresenter
@@ -70,9 +70,9 @@ extension CitiesListViewController: UITableViewDataSource, UITableViewDelegate {
         let cityViewContent = self.viewContent?.citiesListCellContents[indexPath.row]
         
         let cityString = cityViewContent?.name
-        let cityID = cityViewContent?.cityID
+        let cityTag = cityViewContent?.cityTag
         
-        self.navigateToDetailVC(cityString: cityString, cityID: cityID)
+        self.navigateToDetailVC(cityString: cityString, cityTag: cityTag)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

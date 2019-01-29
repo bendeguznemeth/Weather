@@ -24,8 +24,8 @@ struct OpenWeatherAPI {
     private static let baseURLString = "https://api.openweathermap.org/data/2.5/weather"
     private static let apiKey = "6201d38af6afd8d07c7e1e0355153689"
     
-    static func getWeatherInfo(for cityID: String, completion: @escaping (APIResult<WeatherDetailModel>) -> Void) {
-        let url = createURL(for: cityID)
+    static func getWeatherInfo(for cityTag: String, completion: @escaping (APIResult<WeatherDetailModel>) -> Void) {
+        let url = createURL(for: cityTag)
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -63,9 +63,9 @@ struct OpenWeatherAPI {
                         return
                 }
                 
-                let weatherInfo = WeatherDetailModel(main: mainWeather, description: weatherDescription, temperature: temperature, pressure: pressure, humidity: humidity)
+                let weatherDetail = WeatherDetailModel(main: mainWeather, description: weatherDescription, temperature: temperature, pressure: pressure, humidity: humidity)
                 
-                completion(.success(weatherInfo))
+                completion(.success(weatherDetail))
                 
             } catch let error {
                 completion(.failure(error))
@@ -76,13 +76,13 @@ struct OpenWeatherAPI {
         task.resume()
     }
     
-    private static func createURL(for cityID: String) -> URL {
+    private static func createURL(for cityTag: String) -> URL {
         var components = URLComponents(string: baseURLString)
         
         var queryItems = [URLQueryItem]()
         
         let params = [
-            "q": cityID,
+            "q": cityTag,
             "units": "metric",
             "APPID": apiKey
         ]

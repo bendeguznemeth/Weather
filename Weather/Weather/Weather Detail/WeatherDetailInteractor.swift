@@ -10,14 +10,14 @@ class WeatherDetailInteractor {
     
     weak var presenter: WeatherDetailPresenting?
     
-    private let cityID: String
+    private let cityTag: String
     
-    init(cityID: String) {
-        self.cityID = cityID
+    init(cityTag: String) {
+        self.cityTag = cityTag
     }
     
     func load() {
-        OpenWeatherAPI.getWeatherInfo(for: cityID) { [weak self] (result) in
+        OpenWeatherAPI.getWeatherInfo(for: cityTag) { [weak self] (result) in
             guard let strongSelf = self else {
                 return
             }
