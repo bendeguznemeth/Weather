@@ -12,12 +12,14 @@ class CitiesListPresenter: CitiesListPresenting {
     
     private weak var view: CitiesListViewProtocol?
     private let interactor: CitiesListInteractor
+    private let navigator: Navigating
     
     // MARK: - Lifecycle
     
-    init(view: CitiesListViewProtocol, interactor: CitiesListInteractor) {
+    init(view: CitiesListViewProtocol, interactor: CitiesListInteractor, navigator: Navigating) {
         self.view = view
         self.interactor = interactor
+        self.navigator = navigator
     }
     
     func viewDidLoad() {

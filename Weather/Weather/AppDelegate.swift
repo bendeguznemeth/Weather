@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
+        // TODO: - Open With Navigator
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let citiesListViewController = storyboard.instantiateViewController(withIdentifier: "CitiesListViewController") as? CitiesListViewController else {
             fatalError("CitiesListViewController cannot be instantiated")
