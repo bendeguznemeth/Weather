@@ -19,9 +19,9 @@ class WeatherDetailViewController: UIViewController, WeatherDetailViewProtocol {
     
     var presenter: WeatherDetailPresenter!
     
-    var cityString: String? {
+    var cityName: String? {
         didSet {
-            self.navigationItem.title = cityString
+            self.navigationItem.title = cityName
         }
     }
     

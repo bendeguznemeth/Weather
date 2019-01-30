@@ -34,34 +34,6 @@ class CitiesListViewController: UIViewController, CitiesListViewProtocol {
         self.citiesListTableView.reloadData()
     }
     
-    // MARK: - Navigation
-    
-    private func navigateToDetailVC(cityString: String?, cityTag: String?) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        
-        guard let detailVC = sb.instantiateViewController(withIdentifier: "WeatherDetailViewController") as? WeatherDetailViewController else {
-            fatalError("Could not create WeatherDetailViewController")
-        }
-        
-        guard let cityTag = cityTag else {
-            fatalError("Did not get cityTag")
-        }
-        
-        let weatherDetailInteractor = WeatherDetailInteractor(cityTag: cityTag)
-        let weatherDetailPresenter = WeatherDetailPresenter(view: detailVC, interactor: weatherDetailInteractor)
-        
-        weatherDetailInteractor.presenter = weatherDetailPresenter
-        detailVC.presenter = weatherDetailPresenter
-        
-        detailVC.cityString = cityString
-        
-        guard let navigationController = self.navigationController else {
-            fatalError("Could not create NavigationController")
-        }
-        
-        navigationController.pushViewController(detailVC, animated: true)
-    }
-    
 }
 
 extension CitiesListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -69,10 +41,15 @@ extension CitiesListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cityViewContent = self.viewContent?.citiesListCellContents[indexPath.row]
         
-        let cityString = cityViewContent?.name
-        let cityTag = cityViewContent?.cityTag
+        guard let cityName = cityViewContent?.name else {
+            fatalError("Did not get cityName")
+        }
         
-        self.navigateToDetailVC(cityString: cityString, cityTag: cityTag)
+        guard let cityTag = cityViewContent?.cityTag else {
+            fatalError("Did not get cityTag")
+        }
+        
+        self.presenter.onCityClicked(cityTag: cityTag, cityName: cityName)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

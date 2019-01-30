@@ -29,10 +29,10 @@ class Navigator: Navigating {
         let useCase = url.host ?? ""
         
         switch useCase {
-        case OverviewNavigator.usecase():
-            canOpenUrl = OverviewNavigator.openUrl(url, parameters: parameters, completion: completion)
-        case WeatherNavigator.usecase():
-            canOpenUrl = WeatherNavigator.openUrl(url, parameters: parameters, completion: completion)
+        case CitiesListNavigator.usecase():
+            canOpenUrl = CitiesListNavigator.openUrl(url, parameters: parameters, completion: completion)
+        case WeatherDetailNavigator.usecase():
+            canOpenUrl = WeatherDetailNavigator.openUrl(url, parameters: parameters, completion: completion)
         default:
             canOpenUrl = false
         }
@@ -43,7 +43,7 @@ class Navigator: Navigating {
     }
     
     private func fallBack() {
-        self.openUrl(OverviewNavigator.url())
+        self.openUrl(CitiesListNavigator.url())
     }
     
     static func url() -> URL {

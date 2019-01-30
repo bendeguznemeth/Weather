@@ -26,6 +26,13 @@ class CitiesListPresenter: CitiesListPresenting {
         self.interactor.load()
     }
     
+    // MARK: - API
+    
+    func onCityClicked(cityTag: String, cityName: String) {
+        let url = WeatherDetailNavigator.url(cityTag: cityTag, cityName: cityName)
+        self.navigator.openUrl(url)
+    }
+    
     // MARK: - Private
     
     private func getViewContent(from model: CitiesListModel) -> CitiesListViewContent {

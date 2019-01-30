@@ -11,6 +11,7 @@ import Foundation
 class WeatherDetailNavigator: Navigation {
     
     private static let kCityTag = "city_id"
+    private static let kCityName = "cityName"
     
     static func usecase() -> String {
         return "weatherdetail"
@@ -21,10 +22,19 @@ class WeatherDetailNavigator: Navigation {
             return false
         }
         
+        guard let cityName = url.queryParameterForKey(kCityName) else {
+            return false
+        }
         
+        let weatherDetailParams = WeatherDetailParams.init(cityTag: cityTag, cityName: cityName)
+        let weatherDetailViewController = UseCaseFactory.createWeatherDetailVC(with: weatherDetailParams)
+        
+        topNavigationController()?.pushViewController(weatherDetailViewController, animated: true)
+        
+        return true
     }
     
-    static func url(with cityTag: String) -> URL {
-        return buildURLWithPath(nil, parameters: [kCityTag: cityTag])
+    static func url(cityTag: String, cityName: String) -> URL {
+        return buildURLWithPath(nil, parameters: [kCityTag: cityTag, kCityName: cityName])
     }
 }

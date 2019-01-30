@@ -10,6 +10,7 @@ import UIKit
 
 struct WeatherDetailParams {
     let cityTag: String
+    let cityName: String
 }
 
 extension UseCaseFactory {
@@ -27,6 +28,7 @@ extension UseCaseFactory {
         
         weatherDetailInteractor.presenter = weatherDetailPresenter
         weatherDetailViewController.presenter = weatherDetailPresenter
+        weatherDetailViewController.cityName = params.cityName
         
         return weatherDetailViewController
     }
